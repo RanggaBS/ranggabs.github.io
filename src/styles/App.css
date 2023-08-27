@@ -1,0 +1,105 @@
+@font-face {
+	font-family: "Inter";
+	src: url("../assets//fonts/Inter-VariableFont_slnt_wght.ttf");
+}
+
+:root {
+	--color-black: #222;
+	--color-black-2: #333;
+	--color-white: #fff;
+	--color-rbs: hsl(199, 98%, 49%);
+}
+
+.app {
+	background-color: var(--color-black);
+	color: var(--color-white);
+
+	font-family: "Inter";
+}
+
+/*
+  * Hamburger menu
+ */
+.hamburger-menu {
+	--width: 32px;
+	--height: 24px;
+}
+.hamburger-icon {
+	--spacing: 6px;
+	@apply space-y-[var(--spacing)];
+}
+.hamburger-icon .line {
+	background: var(--color-white);
+	/* transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+		background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; */
+	@apply block w-[32px] h-1 rounded-full relative z-[1] origin-[4px_4px] ease-out duration-[.25s];
+}
+.hamburger-icon .line:first-child {
+	/* @apply origin-[0%_0%]; */
+}
+.hamburger-icon .line:nth-child(2) {
+	/* @apply origin-[0%_100%]; */
+}
+
+.hamburger-input:checked ~ .hamburger-icon .line:nth-child(1) {
+	@apply opacity-100 rotate-45 -translate-x-[2px] -translate-y-[1px];
+}
+
+/* Hide middle line */
+.hamburger-input:checked ~ .hamburger-icon .line:nth-child(2) {
+	@apply rotate-0 opacity-0;
+}
+
+/* Last line direction */
+.hamburger-input:checked ~ .hamburger-icon .line:nth-child(3) {
+	@apply -rotate-45 translate-x-[1px] -translate-y-[2px];
+}
+
+/*
+  * Navbar menu list
+*/
+.navbar .menu {
+	background-color: var(--color-black-2);
+	@apply xs:bg-transparent;
+}
+.navbar .menu.active {
+	@apply translate-y-0;
+}
+
+/*
+* Underline effect on hover
+*/
+.navbar .menu .menu-link {
+	@apply inline-block relative transition
+	after:absolute after:w-full after:scale-x-0 after:h-[2px] after:bottom-0 after:left-0 after:bg-[var(--color-white)] after:origin-bottom-right after:transition after:duration-[.25s]
+	hover:after:scale-x-100 hover:after:origin-bottom-left;
+}
+
+.navbar .menu .menu-link.menu-link--current {
+	color: var(--color-rbs);
+	@apply static block after:static;
+}
+
+/*
+  * Shining text animation
+*/
+@keyframes shine {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+.name {
+	background: linear-gradient(
+		90deg,
+		var(--color-rbs) 40%,
+		#fff,
+		var(--color-rbs) 60%
+	);
+	background-size: 250% 100%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: shine 2.5s infinite linear;
+}
