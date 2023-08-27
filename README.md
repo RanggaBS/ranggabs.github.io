@@ -1,5 +1,3 @@
 # ranggabs.github.io
 
-This is my testing website.
-
-I would like to learn another languages.
+This is my personal website.
